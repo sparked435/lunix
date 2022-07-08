@@ -10215,6 +10215,12 @@ static int unix_symlinkat(lua_State *L) {
 #endif
 
 
+static int unix_sync(lua_State *L) {
+	sync();
+	return 0;
+}
+
+
 static int unix_sysconf(lua_State *L) {
 	int name = unixL_checkint(L, 1);
 	long v;
@@ -10807,6 +10813,7 @@ static const luaL_Reg unix_routines[] = {
 #if HAVE_SYMLINKAT
 	{ "symlinkat",          &unix_symlinkat },
 #endif
+	{ "sync",				&unix_sync },
 	{ "sysconf",            &unix_sysconf },
 	{ "syslog",             &unix_syslog },
 	{ "tcgetpgrp",          &unix_tcgetpgrp },
